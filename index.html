@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LegalGen India - User Edition</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="auth-screen" class="auth-container">
+        <div class="auth-box">
+            <div class="brand-large">
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                <h1>LegalGen India</h1>
+            </div>
+            <p>Secure Contract Generator</p>
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="auth-username" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="auth-password" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="btn-primary full-width">Sign In / Register</button>
+                <p class="note">Note: New usernames will auto-register.</p>
+            </form>
+        </div>
+    </div>
+
+    <div id="app-container" class="hidden">
+        
+        <header class="app-header no-print">
+            <div class="brand">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+                <span>LegalGen India</span>
+            </div>
+            <div class="user-controls">
+                <span id="user-display">Hello, User</span>
+                <button id="logout-btn" class="btn-text">Sign Out</button>
+                <button id="print-btn" class="btn-primary">🖨️ Print PDF</button>
+            </div>
+        </header>
+
+        <main class="app-layout">
+            <aside class="sidebar no-print">
+                <div class="sidebar-header">
+                    <h3>Saved Contracts</h3>
+                </div>
+                <ul id="saved-list" class="saved-list">
+                    <li class="empty-msg">No saved contracts.</li>
+                </ul>
+            </aside>
+
+            <section class="editor-panel no-print">
+                <div class="control-group">
+                    <label for="template-selector" class="section-label">1. Select Template</label>
+                    <select id="template-selector">
+                        <option value="" disabled selected>Choose a template...</option>
+                    </select>
+                </div>
+
+                <div class="form-container">
+                    <div class="flex-between">
+                        <h3 class="section-label">2. Contract Details</h3>
+                        <button id="save-draft-btn" class="btn-secondary small">💾 Save Draft</button>
+                    </div>
+                    <form id="dynamic-form">
+                        <p class="helper-text">Select a template above to begin.</p>
+                    </form>
+                </div>
+            </section>
+
+            <section class="preview-panel">
+                <div class="paper-preview" id="contract-preview">
+                    <div class="placeholder-msg">
+                        <h2>Document Preview</h2>
+                        <p>Fill in the details to see the live preview.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="sig-modal" class="modal-overlay hidden no-print">
+        <div class="modal-content">
+            <h3>Draw Signature</h3>
+            <div class="canvas-wrapper">
+                <canvas id="sig-canvas"></canvas>
+            </div>
+            <div class="modal-actions">
+                <button id="clear-sig-btn" class="btn-secondary">Clear</button>
+                <button id="save-sig-btn" class="btn-primary">Apply</button>
+                <button id="close-modal-btn" class="btn-text">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="toast" class="toast hidden">Saved successfully!</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
